@@ -1,18 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import CpuFlags               from './CpuFlags';
+import { FLAGS }              from 'constants';
+import React                  from 'react';
+import ReactDOM               from 'react-dom';
+import registerServiceWorker  from './registerServiceWorker';
+
 import './index.css';
-import CFlags from './cflags';
-import registerServiceWorker from './registerServiceWorker';
 
-const FLAGS = [{ "mmx": "Multimedia Extensions" },
-               { "fdiv": "FPU FDIV" },
-               { "coma": "Cyrix 6x86 coma" },
-               { "msr": "Model-Specific Registers" }
-];
 
-ReactDOM.render(<CFlags flags={FLAGS} />, document.getElementById('root'));
+ReactDOM.render(<CpuFlags flags={FLAGS} />, document.getElementById('root'));
 registerServiceWorker();
 
 if (module.hot) {
     module.hot.accept()
-}
+};

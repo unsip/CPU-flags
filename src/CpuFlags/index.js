@@ -1,10 +1,13 @@
+import { FLAGS }            from 'constants';
+import PropTypes            from 'prop-types';
 import React, { Component } from 'react';
-import './cflags.css';
+
+import './index.css';
 
 
 const Header = () =>
   <div>
-    <h1>CFlags</h1>
+    <h1>CPU Flags</h1>
   </div>
 
 const Search = ({value, onSubmit, onChange}) =>
@@ -27,14 +30,16 @@ const Description = ({ searchResult }) =>
     {searchResult.map(flag =>
       <li>{flag.id} - {flag.description}</li>
     )}
+    {console.log(searchResult)}
   </ul>
 
-class CFlags extends Component {
+export default class CpuFlags extends Component {
+
   constructor(props) {
     super(props);
 
     this.state = {
-      flagList: this.props.flags,
+      flagList: FLAGS,
       result: null,
       searchTerm: ""
     }
@@ -59,7 +64,7 @@ class CFlags extends Component {
   render() {
     const { searchTerm, result } = this.state;
     return (
-      <div className="cflags">
+      <div className="cpuflags">
         <Header />
 
         <Search
@@ -71,17 +76,10 @@ class CFlags extends Component {
         { result
           ? <Description
             searchResult={result}
-          />
+            />
           : <p>No such flags found</p>
         }
       </div>
     );
   }
 }
-
-export default CFlags;
-
-// Components:
-// - Header
-// - Search form
-// - Description
