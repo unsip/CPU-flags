@@ -1,37 +1,15 @@
-import { FLAGS }            from 'constants';
-import PropTypes            from 'prop-types';
 import React, { Component } from 'react';
+
+import { Description }      from '../Description';
+import { Search }           from '../Search';
+
+import {
+  FLAGS,
+  DEFAULT_QUERY
+} from '../../constants';
 
 import './index.css';
 
-
-const Header = () =>
-  <div>
-    <h1>CPU Flags</h1>
-  </div>
-
-const Search = ({value, onSubmit, onChange}) =>
-  <form>
-    <input
-      type="text"
-      value={value}
-      onChange={onChange}
-    />
-    <button
-      type="Submit"
-      onClick={onSubmit}
-    >Submit</button>
-  </form>
-
-// List of flags with description of each
-// In case of invalid flag output an error
-const Description = ({ searchResult }) =>
-  <ul>
-    {searchResult.map(flag =>
-      <li>{flag.id} - {flag.description}</li>
-    )}
-    {console.log(searchResult)}
-  </ul>
 
 export default class CpuFlags extends Component {
 
@@ -41,7 +19,7 @@ export default class CpuFlags extends Component {
     this.state = {
       flagList: FLAGS,
       result: null,
-      searchTerm: ""
+      searchTerm: DEFAULT_QUERY
     }
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -50,13 +28,22 @@ export default class CpuFlags extends Component {
 
   onSearchChange(event) {
       this.setState({ searchTerm: event.target.value });
+      event.preventDefault();
   }
 
   onSubmit(event) {
     let { searchTerm, flagList } = this.state;
+    // Possible bug: splitting cause many entries in case of whitespace
     searchTerm = searchTerm.split(' ');
     // Search process
-    const searchResult = flagList.filter(item => searchTerm.includes(item.id));
+    let searchResult = {};
+
+    for (let flag of searchTerm) {
+      if (flagList[flag]) {
+        searchResult[flag] = flagList[flag];
+      }
+    }
+
     this.setState({ result: searchResult });
     event.preventDefault();
   }
@@ -65,7 +52,7 @@ export default class CpuFlags extends Component {
     const { searchTerm, result } = this.state;
     return (
       <div className="cpuflags">
-        <Header />
+        <h1>CPU Flags</h1>
 
         <Search
           value={searchTerm}
@@ -74,7 +61,7 @@ export default class CpuFlags extends Component {
         />
 
         { result
-          ? <Description
+          ? <Description            // List of flags with description of each
             searchResult={result}
             />
           : <p>No such flags found</p>

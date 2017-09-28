@@ -1,5 +1,4 @@
-import CpuFlags               from './CpuFlags';
-import { FLAGS }              from 'constants';
+import CpuFlags               from './components/CpuFlags';
 import React                  from 'react';
 import ReactDOM               from 'react-dom';
 import registerServiceWorker  from './registerServiceWorker';
@@ -7,7 +6,7 @@ import registerServiceWorker  from './registerServiceWorker';
 import './index.css';
 
 
-ReactDOM.render(<CpuFlags flags={FLAGS} />, document.getElementById('root'));
+ReactDOM.render(<CpuFlags />, document.getElementById('root'));
 registerServiceWorker();
 
 if (module.hot) {
