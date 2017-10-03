@@ -3,5 +3,5 @@ export const FLAGS = {
   "fdiv": "FPU FDIV",
   "coma": "Cyrix 6x86 coma",
   "msr": "Model-Specific Registers"
-};
-export const DEFAULT_QUERY = "";
+}
+export const DEFAULT_QUERY = ""
