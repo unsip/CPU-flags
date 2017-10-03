@@ -18,12 +18,27 @@ export default class CpuFlags extends Component {
 
     this.state = {
       flagList: FLAGS,
-      result: null,
+      result: {},
       searchTerm: DEFAULT_QUERY
     }
 
     this.onSubmit = this.onSubmit.bind(this)
     this.onSearchChange = this.onSearchChange.bind(this)
+  }
+
+  searchFlags(searchTerm, flagList) {
+    // Warning: splitting cause many entries in case of whitespace
+    let splittedFlags = searchTerm.split(' ')
+    let searchResult = {}
+
+    for (let flag of splittedFlags) {
+      flag = flag.toLowerCase()
+      if (flagList[flag]) {
+        searchResult[flag] = flagList[flag]
+      }
+    }
+
+    return searchResult
   }
 
   onSearchChange(event) {
@@ -33,17 +48,7 @@ export default class CpuFlags extends Component {
 
   onSubmit(event) {
     let { searchTerm, flagList } = this.state
-    // Possible bug: splitting cause many entries in case of whitespace
-    searchTerm = searchTerm.split(' ')
-    // Search process
-    let searchResult = {}
-
-    for (let flag of searchTerm) {
-      if (flagList[flag]) {
-        searchResult[flag] = flagList[flag]
-      }
-    }
-
+    let searchResult = this.searchFlags(searchTerm, flagList)
     this.setState({ result: searchResult })
     event.preventDefault()
   }
@@ -60,12 +65,7 @@ export default class CpuFlags extends Component {
           onChange={this.onSearchChange}
         />
 
-        { result
-          ? <Description            // List of flags with description of each
-            searchResult={result}
-            />
-          : <p>No such flags found</p>
-        }
+        <Description searchResult={result} />
       </div>
     )
   }
