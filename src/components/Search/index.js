@@ -1,3 +1,4 @@
+import { Button }        from 'react-bootstrap'
 import PropTypes         from 'prop-types'
 import React             from 'react'
 import { DEFAULT_QUERY } from '../../constants'
@@ -11,10 +12,13 @@ const Search = ({value, onSubmit, onChange }) =>
       value={value}
       onChange={onChange}
     />
-    <button
-      type="Submit"
+    <Button
+      bsStyle="primary"
+      type="button"
       onClick={onSubmit}
-    >Submit</button>
+    >
+      Submit
+    </Button>
   </form>
 
 Search.propTypes = {

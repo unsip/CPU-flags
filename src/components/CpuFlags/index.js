@@ -17,8 +17,8 @@ export default class CpuFlags extends Component {
     super(props)
 
     this.state = {
-      flagList: FLAGS,
-      result: {},
+      flagList:   FLAGS,
+      result:     FLAGS,
       searchTerm: DEFAULT_QUERY
     }
 
@@ -27,7 +27,7 @@ export default class CpuFlags extends Component {
   }
 
   searchFlags(searchTerm, flagList) {
-    // Warning: splitting cause many entries in case of whitespace
+    // Warning: splitting creates many entries in case of whitespaces
     let splittedFlags = searchTerm.split(' ')
     let searchResult = {}
 
@@ -41,20 +41,33 @@ export default class CpuFlags extends Component {
     return searchResult
   }
 
+  // Change values in search field as user typing
   onSearchChange(event) {
       this.setState({ searchTerm: event.target.value })
-      event.preventDefault()
   }
 
-  onSubmit(event) {
-    let { searchTerm, flagList } = this.state
-    let searchResult = this.searchFlags(searchTerm, flagList)
+  // Do not search when got blank input
+  needsToSearchFlags(searchTerm) {
+    return searchTerm.replace(/\s/g, '') === ''
+  }
+
+  // Submit query, search flags if needed
+  onSubmit() {
+    const { searchTerm, flagList } = this.state
+    let searchResult
+
+    if (!this.needsToSearchFlags(searchTerm)) {
+      searchResult = this.searchFlags(searchTerm, flagList)
+    } else {
+      searchResult = flagList
+    }
+
     this.setState({ result: searchResult })
-    event.preventDefault()
   }
 
   render() {
     const { searchTerm, result } = this.state
+
     return (
       <div className="cpuflags">
         <h1>CPU Flags</h1>

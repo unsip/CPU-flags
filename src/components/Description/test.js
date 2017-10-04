@@ -27,7 +27,7 @@ describe('Description component', () => {
 
   it('`not found` message renders', () => {
     props.searchResult = {}
-    const message = <h2>Not found</h2>
+    const message = <p>Not found</p>
     expect(description().contains(message)).toBe(true)
   })
 

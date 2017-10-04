@@ -9,7 +9,7 @@ const Description = ({ searchResult }) =>
               <li>{id} - {description}</li>
           )}
         </ul>
-      : <h2>Not found</h2>
+      : <p>Not found</p>
     }
   </div>
 
