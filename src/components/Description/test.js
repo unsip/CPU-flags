@@ -31,10 +31,11 @@ describe('Description component', () => {
     expect(description().contains(message)).toBe(true)
   })
 
+  // Expect `entry_number` + 1 (coz of header)
   it('renders one entry', () => {
     props.searchResult = { tty: "TTY description" }
-    const li = description().find("li")
-    expect(li.length).toBe(1)
+    const tableRow = description().find("tr")
+    expect(tableRow.length).toBe(2)
   })
 
   it('renders few entries', () => {
@@ -43,7 +44,7 @@ describe('Description component', () => {
       eer: "EER description",
       ll:  "LL description"
     }
-    const li = description().find("li")
-    expect(li.length).toBe(3)
+    const tableRow = description().find("tr")
+    expect(tableRow.length).toBe(4)
   })
 })

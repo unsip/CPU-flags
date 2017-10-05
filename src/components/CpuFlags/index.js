@@ -52,7 +52,7 @@ export default class CpuFlags extends Component {
   }
 
   // Submit query, search flags if needed
-  onSubmit() {
+  onSubmit(event) {
     const { searchTerm, flagList } = this.state
     let searchResult
 
@@ -63,6 +63,8 @@ export default class CpuFlags extends Component {
     }
 
     this.setState({ result: searchResult })
+
+    event.preventDefault()
   }
 
   render() {
