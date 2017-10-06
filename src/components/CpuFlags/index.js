@@ -32,7 +32,7 @@ export default class CpuFlags extends Component {
     let searchResult = {}
 
     for (let flag of splittedFlags) {
-      flag = flag.toLowerCase()
+      flag = flag.toUpperCase()
       if (flagList[flag]) {
         searchResult[flag] = flagList[flag]
       }

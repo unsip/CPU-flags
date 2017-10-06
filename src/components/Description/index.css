@@ -1,7 +1,17 @@
 .Description {
   padding: 10px;
+  width: 80%;
+  margin: auto;
 }
 
 .table-header {
   text-align: center;
+}
+
+.flag-name {
+  width: 10%;
+}
+
+.flag-description {
+  text-align: left;
 }

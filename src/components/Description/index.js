@@ -7,7 +7,12 @@ import './index.css'
 const Description = ({ searchResult }) =>
   <div className="Description">
     { Object.keys(searchResult).length
-      ? <Table striped bordered hover responsive>
+      ? <Table
+          striped
+          bordered
+          hover
+          responsive
+        >
           <thead>
            <tr>
               <th className="table-header">Name</th>
@@ -17,8 +22,8 @@ const Description = ({ searchResult }) =>
           <tbody>
             { Object.entries(searchResult).map(([id, description]) =>
                 <tr>
-                  <td>{id}</td>
-                  <td>{description}</td>
+                  <td className="flag-name">{id}</td>
+                  <td className="flag-description">{description}</td>
                 </tr>
             )}
           </tbody>
