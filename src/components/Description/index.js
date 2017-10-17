@@ -1,4 +1,5 @@
 import { Table }  from 'react-bootstrap'
+import { Links }  from '../Links'
 import PropTypes  from 'prop-types'
 import React      from 'react'
 
@@ -6,7 +7,7 @@ import './index.css'
 
 const Description = ({ searchResult }) =>
   <div className="Description">
-    { Object.keys(searchResult).length
+    { searchResult.length
       ? <Table
           striped
           bordered
@@ -20,10 +21,15 @@ const Description = ({ searchResult }) =>
             </tr>
           </thead>
           <tbody>
-            { Object.entries(searchResult).map(([id, description]) =>
+            { searchResult.map(([id, description]) =>
                 <tr>
-                  <td className="flag-name">{id}</td>
-                  <td className="flag-description">{description}</td>
+                  <td className="flag-name">{id.toLowerCase()}</td>
+                  <td className="flag-description">
+                    <span classname="flag-text">{description}</span>
+                    <span classname="flag-button">
+                      <Links />
+                    </span>
+                  </td>
                 </tr>
             )}
           </tbody>

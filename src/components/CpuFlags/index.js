@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 
 import { Description }      from '../Description'
+import { LoadingButton }    from '../LoadingButton'
 import { Search }           from '../Search'
 
 import {
-  FLAGS,
-  DEFAULT_QUERY
+  NUMBER_OF_ENTRIES,
+  DEFAULT_QUERY,
+  FLAGS
 } from '../../constants'
 
 import './index.css'
@@ -17,13 +19,22 @@ export default class CpuFlags extends Component {
     super(props)
 
     this.state = {
-      flagList:   FLAGS,
-      result:     FLAGS,
-      searchTerm: DEFAULT_QUERY
+      entriesNumber: NUMBER_OF_ENTRIES,
+      flagList:      FLAGS,
+      result:        FLAGS,
+      searchTerm:    DEFAULT_QUERY
     }
 
     this.onSubmit = this.onSubmit.bind(this)
     this.onSearchChange = this.onSearchChange.bind(this)
+    this.loadMore = this.loadMore.bind(this)
+  }
+
+  loadMore() {
+    console.log('KEEEEK')
+    const { entriesNumber } = this.state
+    let newEntriesNumber = entriesNumber + 10
+    this.setState({ entriesNumber: newEntriesNumber })
   }
 
   searchFlags(searchTerm, flagList) {
@@ -33,9 +44,8 @@ export default class CpuFlags extends Component {
 
     for (let flag of splittedFlags) {
       flag = flag.toUpperCase()
-      if (flagList[flag]) {
+      if (flagList[flag])
         searchResult[flag] = flagList[flag]
-      }
     }
 
     return searchResult
@@ -56,11 +66,10 @@ export default class CpuFlags extends Component {
     const { searchTerm, flagList } = this.state
     let searchResult
 
-    if (!this.needsToSearchFlags(searchTerm)) {
+    if (!this.needsToSearchFlags(searchTerm))
       searchResult = this.searchFlags(searchTerm, flagList)
-    } else {
+    else
       searchResult = flagList
-    }
 
     this.setState({ result: searchResult })
 
@@ -69,6 +78,10 @@ export default class CpuFlags extends Component {
 
   render() {
     const { searchTerm, result } = this.state
+    const resultList = (
+      result &&
+      Object.entries(result).slice(1, 6)
+    ) || []
 
     return (
       <div className="cpuflags">
@@ -80,7 +93,10 @@ export default class CpuFlags extends Component {
           onChange={this.onSearchChange}
         />
 
-        <Description searchResult={result} />
+        <Description searchResult={resultList} />
+        <LoadingButton
+          onClick={() => this.loadMore()}
+        />
       </div>
     )
   }

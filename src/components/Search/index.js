@@ -1,4 +1,4 @@
-import { Button, FormControl, FormGroup, InputGroup } from 'react-bootstrap'
+import { Button, Form, FormControl, FormGroup, InputGroup } from 'react-bootstrap'
 import PropTypes         from 'prop-types'
 import React             from 'react'
 import { DEFAULT_QUERY } from '../../constants'
@@ -6,7 +6,7 @@ import { DEFAULT_QUERY } from '../../constants'
 import './index.css'
 
 const Search = ({ value, onSubmit, onChange }) =>
-  <form className="Search">
+  <Form inline className="Search">
     <FormGroup>
       <InputGroup>
         <FormControl
@@ -26,7 +26,7 @@ const Search = ({ value, onSubmit, onChange }) =>
         </InputGroup.Button>
       </InputGroup>
     </FormGroup>
-  </form>
+  </Form>
 
 
 Search.propTypes = {
