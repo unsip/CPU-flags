@@ -15,14 +15,14 @@ const Description = ({ searchResult }) =>
           responsive
         >
           <thead>
-           <tr>
+            <tr>
               <th className="table-header">Name</th>
               <th className="table-header">Description</th>
             </tr>
           </thead>
           <tbody>
             { searchResult.map(([id, description]) =>
-                <tr>
+                <tr key={id}>
                   <td className="flag-name">{id.toLowerCase()}</td>
                   <td className="flag-description">
                     <span className="flag-text">{description}</span>

@@ -7,6 +7,7 @@ import './index.css'
 const renderEntry = (entry, index) =>
   <MenuItem
     href={entry}
+    key={index.toString()}
   >
     Link {index + 1}
   </MenuItem>

@@ -33,17 +33,17 @@ describe('Description component', () => {
 
   // Expect `entry_number` + 1 (coz of header)
   it('renders one entry', () => {
-    props.searchResult = { tty: "TTY description" }
+    props.searchResult = [["tty", "TTY description"]]
     const tableRow = description().find("tr")
     expect(tableRow.length).toBe(2)
   })
 
   it('renders few entries', () => {
-    props.searchResult = {
-      asd: "ADS description",
-      eer: "EER description",
-      ll:  "LL description"
-    }
+    props.searchResult = [
+      ["asd", "ADS description"],
+      ["eer", "EER description"],
+      ["ll",  "LL description"]
+    ]
     const tableRow = description().find("tr")
     expect(tableRow.length).toBe(4)
   })
