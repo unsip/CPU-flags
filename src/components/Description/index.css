@@ -13,12 +13,19 @@
 }
 
 .flag-description {
-  text-align: left;
+  position: relative;
 }
 
 .flag-text {
-  text-align: left;
+  position: absolute;
+  left: 10px;
+  display: inline-block;
 }
 
 .flag-button {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  bottom: 10px;
+  display: inline-block
 }

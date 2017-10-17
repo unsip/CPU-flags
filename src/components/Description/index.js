@@ -25,8 +25,8 @@ const Description = ({ searchResult }) =>
                 <tr>
                   <td className="flag-name">{id.toLowerCase()}</td>
                   <td className="flag-description">
-                    <span classname="flag-text">{description}</span>
-                    <span classname="flag-button">
+                    <span className="flag-text">{description}</span>
+                    <span className="flag-button">
                       <Links />
                     </span>
                   </td>
@@ -39,7 +39,7 @@ const Description = ({ searchResult }) =>
   </div>
 
 
-Description.PropTypes = { searchResult: PropTypes.object.isRequired }
-Description.defaultProps = { searchResult: {} }
+Description.PropTypes = { searchResult: PropTypes.array.isRequired }
+Description.defaultProps = { searchResult: [] }
 
 export { Description }

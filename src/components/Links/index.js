@@ -14,6 +14,8 @@ const renderEntry = (entry, index) =>
 const Links = ({ linksList }) =>
   <DropdownButton
     title="Further reading"
+    bsSize="small"
+    id="dropdown-size-small"
   >
     { linksList.map(renderEntry) }
   </DropdownButton>

@@ -5,9 +5,10 @@ import { LoadingButton }    from '../LoadingButton'
 import { Search }           from '../Search'
 
 import {
-  NUMBER_OF_ENTRIES,
   DEFAULT_QUERY,
-  FLAGS
+  ENTRIES_STEP,
+  FLAGS,
+  NUMBER_OF_ENTRIES
 } from '../../constants'
 
 import './index.css'
@@ -31,10 +32,9 @@ export default class CpuFlags extends Component {
   }
 
   loadMore() {
-    console.log('KEEEEK')
-    const { entriesNumber } = this.state
-    let newEntriesNumber = entriesNumber + 10
-    this.setState({ entriesNumber: newEntriesNumber })
+    let { entriesNumber } = this.state
+    entriesNumber += ENTRIES_STEP
+    this.setState({ entriesNumber: entriesNumber })
   }
 
   searchFlags(searchTerm, flagList) {
@@ -77,10 +77,10 @@ export default class CpuFlags extends Component {
   }
 
   render() {
-    const { searchTerm, result } = this.state
+    const { searchTerm, result, entriesNumber } = this.state
     const resultList = (
       result &&
-      Object.entries(result).slice(1, 6)
+      result.slice(1, entriesNumber)
     ) || []
 
     return (
