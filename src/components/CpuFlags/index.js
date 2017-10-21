@@ -38,7 +38,6 @@ export default class CpuFlags extends Component {
   }
 
   searchFlags(searchTerm, flagList) {
-    // Warning: splitting creates many entries in case of whitespaces
     let splittedFlags = searchTerm.split(' ')
     let searchResult = {}
 
@@ -63,6 +62,7 @@ export default class CpuFlags extends Component {
 
   // Submit query, search flags if needed
   onSubmit(event) {
+    event.preventDefault()
     const { searchTerm, flagList } = this.state
     let searchResult
 
@@ -72,15 +72,13 @@ export default class CpuFlags extends Component {
       searchResult = flagList
 
     this.setState({ result: searchResult })
-
-    event.preventDefault()
   }
 
   render() {
     const { searchTerm, result, entriesNumber } = this.state
     const resultList = (
-      result &&
-      result.slice(1, entriesNumber)
+      Object.entries(result) &&
+      Object.entries(result).slice(0, entriesNumber + 1)
     ) || []
 
     return (
@@ -100,9 +98,14 @@ export default class CpuFlags extends Component {
         </p>
 
         <Description searchResult={resultList} />
-        <LoadingButton
-          onClick={() => this.loadMore()}
-        />
+
+        { resultList.length !== Object.entries(result).length
+          ? <LoadingButton
+              onClick={() => this.loadMore()}
+            />
+          : null
+        }
+
       </div>
     )
   }
