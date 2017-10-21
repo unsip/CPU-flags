@@ -93,6 +93,12 @@ export default class CpuFlags extends Component {
           onChange={this.onSearchChange}
         />
 
+        <p className="usage">
+          Copy output of
+          <code> cat /proc/cpuinfo | grep flags </code>
+          and paste it into search.
+        </p>
+
         <Description searchResult={resultList} />
         <LoadingButton
           onClick={() => this.loadMore()}
