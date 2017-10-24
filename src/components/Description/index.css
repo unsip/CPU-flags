@@ -19,13 +19,8 @@
 .flag-text {
   position: absolute;
   left: 10px;
-  display: inline-block;
 }
 
-.flag-button {
-  position: absolute;
-  right: 10px;
-  top: 5px;
-  bottom: 10px;
-  display: inline-block
+.flag-links {
+  width: 15%
 }

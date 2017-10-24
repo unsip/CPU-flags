@@ -1,5 +1,4 @@
 import { Table }  from 'react-bootstrap'
-import { Links }  from '../Links'
 import PropTypes  from 'prop-types'
 import React      from 'react'
 
@@ -18,17 +17,22 @@ const Description = ({ searchResult }) =>
             <tr>
               <th className="table-header">Name</th>
               <th className="table-header">Description</th>
+              <th className="table-header">Further reading</th>
             </tr>
           </thead>
           <tbody>
-            { searchResult.map(([id, description]) =>
+            { searchResult.map(([id, contents]) =>
                 <tr key={id}>
-                  <td className="flag-name">{id.toLowerCase()}</td>
+                  <td className="flag-name">{id}</td>
                   <td className="flag-description">
-                    <span className="flag-text">{description}</span>
-                    <span className="flag-button">
-                      <Links />
-                    </span>
+                    <p className="flag-text">
+                      {contents['description']}
+                    </p>
+                  </td>
+                  <td className="flag-links">
+                    { contents['links'].map((link, currId) =>
+                      <a key={currId} href={link}> Link </a>
+                    )}
                   </td>
                 </tr>
             )}

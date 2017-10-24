@@ -12,10 +12,10 @@ describe('CpuFlags', () => {
   it('filters results correctly', () => {
     const search = CpuFlags.prototype.searchFlags
     const flags = {
-      "MMX": "Multimedia Extensions",
-      "FDIV": "FPU FDIV",
-      "COMA": "Cyrix 6x86 coma",
-      "MSR": "Model-Specific Registers"
+      "mmx": "Multimedia Extensions",
+      "fdiv": "FPU FDIV",
+      "coma": "Cyrix 6x86 coma",
+      "msr": "Model-Specific Registers"
     }
     const testCases = [
       ["", 0],
