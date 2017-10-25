@@ -2,10 +2,11 @@
   "name": "cflags",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://unsip.github.io/CPU-flags",
   "dependencies": {
     "prop-types": "^15.6.0",
     "react": "^15.6.2",
-    "react-bootstrap": "^0.31.3",
+    "react-bootstrap": "^0.31.5",
     "react-dom": "^15.6.2",
     "react-scripts": "1.0.12"
   },
@@ -13,11 +14,13 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && gh-pages -d build"
   },
   "devDependencies": {
-    "enzyme": "^3.0.0",
-    "enzyme-adapter-react-16": "^1.0.0",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.2",
+    "gh-pages": "^1.0.0",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.0.0"
   }
