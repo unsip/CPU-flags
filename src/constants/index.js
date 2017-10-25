@@ -21,7 +21,7 @@ export const FLAGS = {
   },
   "tsc": {
      description: "Time Stamp Counter ",
-     links: ["http://en.wikipedia.org/wiki/Time_Stamp_Counter"]
+     links: ["http://en.wikipedia.org/wiki/Time_Stamp_Counter", "http://oliveryang.net/2015/09/pitfalls-of-TSC-usage/"]
   },
   "msr": {
      description: "Model-Specific Registers ",
@@ -209,7 +209,7 @@ export const FLAGS = {
   },
   "constant_tsc": {
      description: "TSC ticks at a constant rate ",
-     links: ["https://en.wikipedia.org/wiki/Time_Stamp_Counter"]
+     links: ["https://en.wikipedia.org/wiki/Time_Stamp_Counter", "http://oliveryang.net/2015/09/pitfalls-of-TSC-usage/"]
   },
   "up": {
      description: "smp kernel running on up ",
@@ -245,19 +245,19 @@ export const FLAGS = {
   },
   "mfence_rdtsc": {
      description: "(hidden by default) Mfence synchronizes RDTSC ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Time_Stamp_Counter", "http://oliveryang.net/2015/09/pitfalls-of-TSC-usage/"]
   },
   "lfence_rdtsc": {
      description: "(hidden by default) Lfence synchronizes RDTSC ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Time_Stamp_Counter", "http://oliveryang.net/2015/09/pitfalls-of-TSC-usage/"]
   },
   "acc_power": {
      description: "AMD Accumulated Power Mechanism ",
-     links: []
+     links: ["https://lkml.org/lkml/2016/1/6/873"]
   },
   "nopl": {
      description: "The NOPL (0F 1F) instructions ",
-     links: []
+     links: ["http://john.freml.in/amd64-nopl"]
   },
   "always": {
      description: "(hidden by default) Always-present feature ",
@@ -269,19 +269,19 @@ export const FLAGS = {
   },
   "tsc_reliable": {
      description: "TSC is known to be reliable ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Time_Stamp_Counter", "http://oliveryang.net/2015/09/pitfalls-of-TSC-usage/"]
   },
   "nonstop_tsc": {
      description: "TSC does not stop in C states ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Time_Stamp_Counter", "http://oliveryang.net/2015/09/pitfalls-of-TSC-usage/"]
   },
   "cpuid": {
      description: "CPU has CPUID instruction itself ",
-     links: []
+     links: ["http://x86.renejeschke.de/html/file_module_x86_id_45.html", "https://en.wikipedia.org/wiki/CPUID"]
   },
   "extd_apicid": {
      description: "has extended APICID (8 bits) ",
-     links: []
+     links: ["https://software.intel.com/en-us/articles/intel-64-architecture-processor-topology-enumeration"]
   },
   "amd_dcm": {
      description: "multi-node processor ",
@@ -289,23 +289,23 @@ export const FLAGS = {
   },
   "aperfmperf": {
      description: "APERFMPERF ",
-     links: []
+     links: ["https://lwn.net/Articles/283769/"]
   },
   "nonstop_tsc_s3": {
      description: "TSC doesn't stop in S3 state ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Time_Stamp_Counter", "http://oliveryang.net/2015/09/pitfalls-of-TSC-usage/"]
   },
   "tsc_known_freq": {
      description: "TSC has known frequency ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Time_Stamp_Counter", "http://oliveryang.net/2015/09/pitfalls-of-TSC-usage/"]
   },
   "pni": {
      description: "SSE-3 ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/SSE3", "https://en.wikipedia.org/wiki/Pentium_4#Prescott"]
   },
   "pclmulqdq": {
      description: "PCLMULQDQ instruction ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/CLMUL_instruction_set", "http://www.felixcloutier.com/x86/PCLMULQDQ.html", "https://en.wikipedia.org/wiki/Galois/Counter_Mode"]
   },
   "dtes64": {
      description: "64-bit Debug Store ",
@@ -313,7 +313,7 @@ export const FLAGS = {
   },
   "mwait": {
      description: "Monitor/Mwait support ",
-     links: []
+     links: ["http://en.wikipedia.org/wiki/SSE3#Intel_instructions"]
   },
   "ds_cpl": {
      description: "CPL Qual. Debug Store ",
@@ -321,23 +321,23 @@ export const FLAGS = {
   },
   "vmx": {
      description: "Hardware virtualization ",
-     links: []
+     links: ["http://en.wikipedia.org/wiki/X86_virtualization#Intel_virtualization_.28VT-x.29", "https://en.wikipedia.org/wiki/X86_virtualization"]
   },
   "smx": {
      description: "Safer mode ",
-     links: []
+     links: ["http://en.wikipedia.org/wiki/Trusted_Execution_Technology", "http://en.wikipedia.org/wiki/Trusted_Platform_Module", "https://en.wikipedia.org/wiki/LaGrande"]
   },
   "est": {
      description: "Enhanced SpeedStep ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/SpeedStep"]
   },
   "tm2": {
      description: "Thermal Monitor 2 ",
-     links: []
+     links: ["http://en.wikipedia.org/wiki/Tm2"]
   },
   "ssse3": {
      description: "Supplemental SSE-3 ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/SSSE3"]
   },
   "cid": {
      description: "Context ID ",
@@ -349,11 +349,11 @@ export const FLAGS = {
   },
   "fma": {
      description: "Fused multiply-add ",
-     links: []
+     links: ["http://en.wikipedia.org/wiki/FMA_instruction_set"]
   },
   "cx16": {
      description: "CMPXCHG16B ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Double_compare-and-swap"]
   },
   "xtpr": {
      description: "Send Task Priority Messages ",
@@ -373,67 +373,67 @@ export const FLAGS = {
   },
   "sse4_1": {
      description: "SSE-4.1 ",
-     links: []
+     links: ["http://en.wikipedia.org/wiki/SSE4.1#SSE4.1"]
   },
   "sse4_2": {
      description: "SSE-4.2 ",
-     links: []
+     links: ["http://en.wikipedia.org/wiki/SSE4.2#SSE4.2"]
   },
   "x2apic": {
      description: "x2APIC ",
-     links: []
+     links: ["http://en.wikipedia.org/wiki/X2APIC"]
   },
   "movbe": {
      description: "MOVBE instruction ",
-     links: []
+     links: ["http://www.felixcloutier.com/x86/MOVBE.html", "https://en.wikipedia.org/wiki/Big-endian"]
   },
   "popcnt": {
      description: "POPCNT instruction ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Popcnt", "http://en.wikipedia.org/wiki/SSE4#POPCNT_and_LZCNT", "http://en.wikipedia.org/wiki/Hamming_weight"]
   },
   "tsc_deadline_timer": {
      description: "Tsc deadline timer ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Time_Stamp_Counter", "http://oliveryang.net/2015/09/pitfalls-of-TSC-usage/"]
   },
   "aes": {
      description: "AES instructions ",
-     links: []
+     links: ["http://en.wikipedia.org/wiki/AES_instruction_set"]
   },
   "xsave": {
      description: "XSAVE/XRSTOR/XSETBV/XGETBV ",
-     links: []
+     links: ["http://www.felixcloutier.com/x86/XSAVE.html", "http://www.felixcloutier.com/x86/XGETBV.html", "http://www.felixcloutier.com/x86/XRSTOR.html", "http://www.felixcloutier.com/x86/XSETBV.html"]
   },
   "osxsave": {
      description: "(hidden by default) XSAVE enabled in the OS ",
-     links: []
+     links: ["http://www.felixcloutier.com/x86/XSAVE.html"]
   },
   "avx": {
      description: "Advanced Vector Extensions ",
-     links: []
+     links: ["http://en.wikipedia.org/wiki/Advanced_Vector_Extensions"]
   },
   "f16c": {
      description: "16-bit fp conversions ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/F16C", "https://en.wikipedia.org/wiki/Half-precision", "http://en.wikipedia.org/wiki/CVT16_instruction_set"]
   },
   "rdrand": {
      description: "The RDRAND instruction ",
-     links: []
+     links: ["http://en.wikipedia.org/wiki/RdRand", "http://www.felixcloutier.com/x86/RDRAND.html"]
   },
   "hypervisor": {
      description: "Running on a hypervisor ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Hypervisor"]
   },
   "rng": {
      description: "RNG present (xstore) ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Random_number_generation"]
   },
   "rng_en": {
      description: "RNG enabled ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Random_number_generation"]
   },
   "ace": {
      description: "on-CPU crypto (xcrypt) ",
-     links: []
+     links: [""]
   },
   "ace_en": {
      description: "on-CPU crypto enabled ",
@@ -465,7 +465,7 @@ export const FLAGS = {
   },
   "lahf_lm": {
      description: "LAHF/SAHF in long mode ",
-     links: []
+     links: ["http://x86.renejeschke.de/html/file_module_x86_id_148.html"]
   },
   "cmp_legacy": {
      description: "If yes HyperThreading not valid ",
@@ -473,7 +473,7 @@ export const FLAGS = {
   },
   "svm": {
      description: "Secure virtual machine ",
-     links: []
+     links: ["http://en.wikipedia.org/wiki/X86_virtualization#AMD_virtualization_.28AMD-V.29"]
   },
   "extapic": {
      description: "Extended APIC space ",
@@ -485,11 +485,11 @@ export const FLAGS = {
   },
   "abm": {
      description: "Advanced bit manipulation ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Bit_Manipulation_Instruction_Sets#ABM_.28Advanced_Bit_Manipulation.29"]
   },
   "sse4a": {
      description: "SSE-4A ",
-     links: []
+     links: ["http://en.wikipedia.org/wiki/SSE4#SSE4a"]
   },
   "misalignsse": {
      description: "Misaligned SSE mode ",
@@ -497,19 +497,19 @@ export const FLAGS = {
   },
   "3dnowprefetch": {
      description: "3DNow prefetch instructions ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/3DNow!"]
   },
   "osvw": {
      description: "OS Visible Workaround ",
-     links: []
+     links: ["http://developer.amd.com/wordpress/media/2012/10/24593_APM_v21.pdf"]
   },
   "ibs": {
      description: "Instruction Based Sampling ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Hardware_performance_counter#Instruction_based_sampling"]
   },
   "xop": {
      description: "extended AVX instructions ",
-     links: []
+     links: ["http://en.wikipedia.org/wiki/XOP_instruction_set"]
   },
   "skinit": {
      description: "SKINIT/STGI instructions ",
@@ -517,15 +517,15 @@ export const FLAGS = {
   },
   "wdt": {
      description: "Watchdog timer ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Watchdog_timer"]
   },
   "lwp": {
      description: "Light Weight Profiling ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Profiling_(computer_programming)"]
   },
   "fma4": {
      description: "4 operands MAC instructions ",
-     links: []
+     links: ["http://en.wikipedia.org/wiki/FMA_instruction_set"]
   },
   "tce": {
      description: "translation cache extension ",
@@ -537,7 +537,7 @@ export const FLAGS = {
   },
   "tbm": {
      description: "trailing bit manipulations ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/Bit_Manipulation_Instruction_Sets#TBM"]
   },
   "topoext": {
      description: "topology extensions CPUID leafs ",
@@ -613,7 +613,7 @@ export const FLAGS = {
   },
   "intel_pt": {
      description: "Intel Processor Trace ",
-     links: []
+     links: ["https://software.intel.com/en-us/blogs/2013/09/18/processor-tracing"]
   },
   "avx512_4vnniw": {
      description: "AVX-512 Neural Network Instructions ",
@@ -709,11 +709,11 @@ export const FLAGS = {
   },
   "avx512f": {
      description: "AVX-512 Foundation ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/AVX-512"]
   },
   "avx512dq": {
      description: "AVX-512 DQ (Double/Quad granular) Instructions ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/AVX-512"]
   },
   "rdseed": {
      description: "The RDSEED instruction ",
@@ -741,15 +741,15 @@ export const FLAGS = {
   },
   "avx512pf": {
      description: "AVX-512 Prefetch ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/AVX-512"]
   },
   "avx512er": {
      description: "AVX-512 Exponential and Reciprocal ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/AVX-512"]
   },
   "avx512cd": {
      description: "AVX-512 Conflict Detection ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/AVX-512"]
   },
   "sha_ni": {
      description: "SHA1/SHA256 Instruction Extensions ",
@@ -757,11 +757,11 @@ export const FLAGS = {
   },
   "avx512bw": {
      description: "AVX-512 BW (Byte/Word granular) Instructions ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/AVX-512#New_instructions_in_AVX-512_BW_and_DQ"]
   },
   "avx512vl": {
      description: "AVX-512 VL (128/256 Vector Length) Extensions ",
-     links: []
+     links: ["https://en.wikipedia.org/wiki/AVX-512"]
   },
   "xsaveopt": {
      description: "XSAVEOPT ",

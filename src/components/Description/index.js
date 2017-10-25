@@ -4,6 +4,14 @@ import React      from 'react'
 
 import './index.css'
 
+const renderLinks = (linksList) => {
+  const namings = ['Uno', 'Dos', 'Tres', 'Cuatro', 'Cinco']
+  const links = linksList.map((link, currId) =>
+    <a key={currId} href={link} target="_blank"> { namings[currId] } </a>
+  )
+  return links
+}
+
 const Description = ({ searchResult }) =>
   <div className="Description">
     { searchResult.length
@@ -30,9 +38,7 @@ const Description = ({ searchResult }) =>
                     </p>
                   </td>
                   <td className="flag-links">
-                    { contents['links'].map((link, currId) =>
-                      <a key={currId} href={link}> Link </a>
-                    )}
+                    { renderLinks(contents['links']) }
                   </td>
                 </tr>
             )}
