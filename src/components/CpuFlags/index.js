@@ -18,7 +18,7 @@ export default class CpuFlags extends Component {
 
     this.state = {
       flagList:      FLAGS,
-      result:        FLAGS,
+      result:        {},
       searchTerm:    DEFAULT_QUERY
     }
 
