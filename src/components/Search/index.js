@@ -13,8 +13,8 @@ import './index.css'
 
 const Search = ({ value, onSubmit, onChange }) =>
   <Form
-    inline
-    className="Search"
+    horizontal
+    className="search"
     onSubmit={onSubmit}
   >
     <InputGroup>

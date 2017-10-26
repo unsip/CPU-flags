@@ -25,12 +25,6 @@ describe('Description component', () => {
     shallowDescription = undefined
   })
 
-  it('`not found` message renders', () => {
-    props.searchResult = {}
-    const message = <p>Not found</p>
-    expect(description().contains(message)).toBe(true)
-  })
-
   // Expect `entry_number` + 1 (coz of header)
   it('renders one entry', () => {
     props.searchResult = [["tty", {

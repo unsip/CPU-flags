@@ -9,7 +9,8 @@ const renderLinks = (linksList) => {
   const links = linksList.map((link, currId) =>
     <a key={currId} href={link} target="_blank"> { namings[currId] } </a>
   )
-  return links
+
+  return [<b key="linkHeading"> Links: </b>].concat(links)
 }
 
 const Description = ({ searchResult }) =>
@@ -25,7 +26,6 @@ const Description = ({ searchResult }) =>
             <tr>
               <th className="table-header">Name</th>
               <th className="table-header">Description</th>
-              <th className="table-header">Further reading</th>
             </tr>
           </thead>
           <tbody>
@@ -35,16 +35,17 @@ const Description = ({ searchResult }) =>
                   <td className="flag-description">
                     <p className="flag-text">
                       {contents['description']}
+                      { contents['links'].length
+                        ? renderLinks(contents['links'])
+                        : null
+                      }
                     </p>
-                  </td>
-                  <td className="flag-links">
-                    { renderLinks(contents['links']) }
                   </td>
                 </tr>
             )}
           </tbody>
         </Table>
-      : <p>Not found</p>
+      : null
     }
   </div>
 

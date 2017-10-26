@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 
 import { Description }      from '../Description'
-import { LoadingButton }    from '../LoadingButton'
 import { Search }           from '../Search'
 
 import {
   DEFAULT_QUERY,
-  ENTRIES_STEP,
-  FLAGS,
-  NUMBER_OF_ENTRIES
+  FLAGS
 } from '../../constants'
 
 import './index.css'
@@ -20,7 +17,6 @@ export default class CpuFlags extends Component {
     super(props)
 
     this.state = {
-      entriesNumber: NUMBER_OF_ENTRIES,
       flagList:      FLAGS,
       result:        FLAGS,
       searchTerm:    DEFAULT_QUERY
@@ -28,13 +24,6 @@ export default class CpuFlags extends Component {
 
     this.onSubmit = this.onSubmit.bind(this)
     this.onSearchChange = this.onSearchChange.bind(this)
-    this.loadMore = this.loadMore.bind(this)
-  }
-
-  loadMore() {
-    let { entriesNumber } = this.state
-    entriesNumber += ENTRIES_STEP
-    this.setState({ entriesNumber: entriesNumber })
   }
 
   searchFlags(searchTerm, flagList) {
@@ -64,26 +53,26 @@ export default class CpuFlags extends Component {
   onSubmit(event) {
     event.preventDefault()
     const { searchTerm, flagList } = this.state
-    let searchResult
+    let searchResult = {}
 
     if (!this.needsToSearchFlags(searchTerm))
       searchResult = this.searchFlags(searchTerm, flagList)
-    else
-      searchResult = flagList
 
     this.setState({ result: searchResult })
   }
 
   render() {
-    const { searchTerm, result, entriesNumber } = this.state
-    const resultList = (
-      Object.entries(result) &&
-      Object.entries(result).slice(0, entriesNumber + 1)
-    ) || []
+    const { searchTerm, result } = this.state
 
     return (
       <div className="cpuflags">
         <h1>CPU Flags</h1>
+
+        <p className="usage">
+          Start searching by copying output of
+          <code> cat /proc/cpuinfo | grep flags </code>
+          and pasting it below
+        </p>
 
         <Search
           value={searchTerm}
@@ -91,21 +80,7 @@ export default class CpuFlags extends Component {
           onChange={this.onSearchChange}
         />
 
-        <p className="usage">
-          Copy output of
-          <code> cat /proc/cpuinfo | grep flags </code>
-          and paste it into search.
-        </p>
-
-        <Description searchResult={resultList} />
-
-        { resultList.length !== Object.entries(result).length
-          ? <LoadingButton
-              onClick={() => this.loadMore()}
-            />
-          : null
-        }
-
+        <Description searchResult={Object.entries(result)} />
       </div>
     )
   }

@@ -13,14 +13,8 @@
 }
 
 .flag-description {
-  position: relative;
 }
 
 .flag-text {
-  position: absolute;
-  left: 10px;
-}
-
-.flag-links {
-  width: 15%
+  text-align: left;
 }
