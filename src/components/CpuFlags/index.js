@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Alert }            from 'react-bootstrap'
 
 import { Description }      from '../Description'
 import { Search }           from '../Search'
@@ -17,9 +18,10 @@ export default class CpuFlags extends Component {
     super(props)
 
     this.state = {
-      flagList:      FLAGS,
-      result:        {},
-      searchTerm:    DEFAULT_QUERY
+      flagList:       FLAGS,
+      result:         FLAGS,
+      undefinedFlags: [],
+      searchTerm:     DEFAULT_QUERY
     }
 
     this.onSubmit = this.onSubmit.bind(this)
@@ -29,14 +31,17 @@ export default class CpuFlags extends Component {
   searchFlags(searchTerm, flagList) {
     let splittedFlags = searchTerm.split(' ')
     let searchResult = {}
+    let undefinedFlags = []
 
     for (let flag of splittedFlags) {
       flag = flag.toLowerCase()
       if (flagList[flag])
         searchResult[flag] = flagList[flag]
+      else
+        undefinedFlags.push(flag)
     }
 
-    return searchResult
+    return [ searchResult, undefinedFlags ]
   }
 
   // Change values in search field as user typing
@@ -54,24 +59,27 @@ export default class CpuFlags extends Component {
     event.preventDefault()
     const { searchTerm, flagList } = this.state
     let searchResult = {}
+    let undefinedFlags = []
 
     if (!this.needsToSearchFlags(searchTerm))
-      searchResult = this.searchFlags(searchTerm, flagList)
+      [ searchResult, undefinedFlags ] = this.searchFlags(searchTerm, flagList)
 
-    this.setState({ result: searchResult })
+
+    this.setState({
+      result: searchResult,
+      undefinedFlags: undefinedFlags
+    })
   }
 
   render() {
-    const { searchTerm, result } = this.state
+    const { searchTerm, result, undefinedFlags } = this.state
 
     return (
       <div className="cpuflags">
         <h1>CPU Flags</h1>
 
         <p className="usage">
-          Start searching by copying output of
-          <code> cat /proc/cpuinfo | grep flags </code>
-          and pasting it below
+          Start searching by copying output of <code>cat /proc/cpuinfo | grep flags</code> and pasting it below
         </p>
 
         <Search
@@ -79,6 +87,16 @@ export default class CpuFlags extends Component {
           onSubmit={this.onSubmit}
           onChange={this.onSearchChange}
         />
+
+        { undefinedFlags.length
+            ? <Alert
+                bsStyle="danger"
+                className="unmatched"
+              >
+                <strong>Unmatched flags:</strong> {undefinedFlags.join(' ')}
+              </Alert>
+          : null
+        }
 
         <Description searchResult={Object.entries(result)} />
       </div>
