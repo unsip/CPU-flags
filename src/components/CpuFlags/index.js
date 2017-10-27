@@ -37,7 +37,7 @@ export default class CpuFlags extends Component {
       flag = flag.toLowerCase()
       if (flagList[flag])
         searchResult[flag] = flagList[flag]
-      else
+      else if (!undefinedFlags.includes(flag))
         undefinedFlags.push(flag)
     }
 
@@ -93,7 +93,7 @@ export default class CpuFlags extends Component {
                 bsStyle="danger"
                 className="unmatched"
               >
-                <strong>Unmatched flags:</strong> {undefinedFlags.join(' ')}
+                <strong>Unknown flags:</strong> {undefinedFlags.join(' ')}
               </Alert>
           : null
         }
