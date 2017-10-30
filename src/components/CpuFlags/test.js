@@ -18,17 +18,18 @@ describe('CpuFlags', () => {
       "msr": "Model-Specific Registers"
     }
     const testCases = [
-      ["", 0],
-      ["mmx kek fdiv", 2],
-      ["@Dkd 2@(mmxFDIV)", 0],
-      ["COMA mmx? $ FDIV  MMX", 3],
-      ["MSR fDiV cooOma", 2]
+      ["", 0, 1],
+      ["mmx kek fdiv", 2, 1],
+      ["@Dkd 2@(mmxFDIV)", 0, 2],
+      ["COMA mmx? $ FDIV MMX", 3, 2],
+      ["MSR fDiV cooOma", 2, 1]
     ]
     let caseLength
 
-    for (let [input, expectedLength] of testCases) {
-      caseLength = Object.keys(search(input, flags)).length
-      expect(caseLength).toBe(expectedLength)
+    for (let [input, expectedLength, expectedUnmatched] of testCases) {
+      const [ matched, unmatched ] = search(input, flags)
+      expect(Object.keys(matched).length).toBe(expectedLength)
+      expect(unmatched.length).toBe(expectedUnmatched)
     }
   })
 })

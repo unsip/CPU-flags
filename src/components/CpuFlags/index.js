@@ -79,7 +79,7 @@ export default class CpuFlags extends Component {
         <h1>CPU Flags</h1>
 
         <p className="usage">
-          Start searching by copying output of <code>cat /proc/cpuinfo | grep flags</code> and pasting it below
+          Start searching by copying output of <code>cat /proc/cpuinfo | grep flags | sed 's/^.*: //'</code> and pasting it below
         </p>
 
         <Search

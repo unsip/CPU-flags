@@ -14,8 +14,8 @@ const renderLinks = (linksList) => {
   return [<b key="linkHeading"> Links: </b>].concat(links)
 }
 
-const Sort = ({ isSortReverse, onSort, children }) => {
-  const iconType = isSortReverse ? "sort-desc" : "sort-asc"
+const Sort = ({ isSorted, isSortReverse, onSort, children }) => {
+  const iconType = isSorted ? (isSortReverse ? "sort-desc" : "sort-asc") : "sort"
   return (
     <button
       onClick={onSort}
@@ -31,25 +31,36 @@ class Description extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { isSortReverse: false }
+    this.state = {
+      isSortReverse: false,
+      isSorted:      false
+    }
     this.onSort = this.onSort.bind(this)
   }
 
   onSort() {
     const isSortReverse = !this.state.isSortReverse
-    this.setState({ isSortReverse: isSortReverse })
+    this.setState({
+      isSortReverse: isSortReverse,
+      isSorted: true
+    })
   }
 
   render() {
-    const { isSortReverse } = this.state
+    const { isSorted, isSortReverse } = this.state
     const { searchResult } = this.props
+    let resultToRender
 
-    const sortedResult = searchResult.sort((a, b) =>
-      (a[0] < b[0]) ? -1 : (a[0] > b[0]) ? 1 : 0
-    )
-    const reversedResult = isSortReverse
-      ? sortedResult.reverse()
-      : sortedResult
+    if (isSorted) {
+      const sortedResult = searchResult.sort((a, b) =>
+        (a[0] < b[0]) ? -1 : (a[0] > b[0]) ? 1 : 0
+      )
+      resultToRender = isSortReverse
+        ? sortedResult.reverse()
+        : sortedResult
+    }
+    else
+      resultToRender = searchResult
 
     return (
       <div className="Description">
@@ -63,7 +74,11 @@ class Description extends Component {
               <thead>
                 <tr>
                   <th className="table-header">
-                    <Sort onSort={this.onSort} isSortReverse={isSortReverse}>
+                    <Sort
+                      onSort={this.onSort}
+                      isSortReverse={isSortReverse}
+                      isSorted={isSorted}
+                    >
                       Name
                     </Sort>
                   </th>
@@ -71,7 +86,7 @@ class Description extends Component {
                 </tr>
               </thead>
               <tbody>
-                { reversedResult.map(([id, contents]) =>
+                { resultToRender.map(([id, contents]) =>
                     <tr key={id}>
                       <td className="flag-name">{id}</td>
                       <td>
