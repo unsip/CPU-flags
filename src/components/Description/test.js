@@ -29,9 +29,11 @@ describe('Description component', () => {
   it('renders one entry', () => {
     props.searchResult = [["tty", {
       'description': "TTY description",
-      'links': []
+      'links': [['TTY','dummy.org']],
     }]]
     const tableRow = description().find("tr")
+    const anchor = description().find("a")
+    expect(anchor.length).toBe(1)
     expect(tableRow.length).toBe(2)
   })
 
@@ -39,18 +41,20 @@ describe('Description component', () => {
     props.searchResult = [
       ["asd", {
         "description": "ADS description",
-        "links": ["dummy.com"]
+        "links": [["ADS", "dummy.com"]],
       }],
       ["eer", {
         "description": "EER description",
-        "links": ["dummy.com"]
+        "links": [["ERR", "dummy.com"]],
       }],
       ["ll", {
         "description": "LL description",
-        "links": ["dummy.com"]
+        "links": [["LL", "dummy.com"]],
       }]
     ]
     const tableRow = description().find("tr")
+    const anchor = description().find("a")
+    expect(anchor.length).toBe(3)
     expect(tableRow.length).toBe(4)
   })
 })

@@ -14,6 +14,33 @@ const renderLinks = (linksList) => {
   return [<b key="linkHeading"> Links: </b>].concat(links)
 }
 
+// Renders description with links mapped to specific words.
+const renderDescription = (description, links) => {
+  if (!links.length)
+    return description
+
+  let startPoint, endPoint, element
+  let previousEnd = 0
+  let result = []
+
+  for (let link in links) {
+    startPoint = description.search(link[0])
+    endPoint = startPoint + link[0].length
+    result.push(description.slice(previousEnd, startPoint))
+    element = <a href={link[1]} target="_blank">{ link[0] }</a>
+    result.push(element)
+    previousEnd = endPoint
+  }
+
+  // result.push(description.slice(previousEnd, description.length))
+
+  // 1. Search anchor starting index
+  // 2. If its first anchor -> append everything before anchor point to results + JSX anchor
+  // Else -> append everything after previous anchor endpoint + current JSX anchor
+
+  return result
+}
+
 const Sort = ({ isSorted, isSortReverse, onSort, children }) => {
   const iconType = isSorted ? (isSortReverse ? "sort-desc" : "sort-asc") : "sort"
   return (
@@ -22,7 +49,7 @@ const Sort = ({ isSorted, isSortReverse, onSort, children }) => {
       className="button-inline"
       type="button"
     >
-      { children }<FontAwesome name={iconType} />
+      { children } <FontAwesome name={iconType} />
     </button>
   )
 }
@@ -91,11 +118,7 @@ class Description extends Component {
                       <td className="flag-name">{id}</td>
                       <td>
                         <p className="flag-description">
-                          {contents['description']}
-                          { contents['links'].length
-                            ? renderLinks(contents['links'])
-                            : null
-                          }
+                          {renderDescription(contents['description'], contents['links'])}
                         </p>
                       </td>
                     </tr>
