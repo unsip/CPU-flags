@@ -18,21 +18,22 @@ const renderLinks = (linksList) => {
 const renderDescription = (description, links) => {
   if (!links.length)
     return description
+  console.log(links[0][0])
 
   let startPoint, endPoint, element
   let previousEnd = 0
   let result = []
 
-  for (let link in links) {
+  for (let link of links) {
     startPoint = description.search(link[0])
     endPoint = startPoint + link[0].length
     result.push(description.slice(previousEnd, startPoint))
-    element = <a href={link[1]} target="_blank">{ link[0] }</a>
+    element = [<a href={link[1]} target="_blank">{link[0]}</a>]
     result.push(element)
     previousEnd = endPoint
   }
 
-  // result.push(description.slice(previousEnd, description.length))
+  result.push(description.slice(previousEnd, description.length))
 
   // 1. Search anchor starting index
   // 2. If its first anchor -> append everything before anchor point to results + JSX anchor
