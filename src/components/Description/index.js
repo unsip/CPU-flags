@@ -5,41 +5,30 @@ import { Table }            from 'react-bootstrap'
 
 import './index.css'
 
-const renderLinks = (linksList) => {
-  const namings = ['Uno', 'Dos', 'Tres', 'Cuatro', 'Cinco']
-  const links = linksList.map((link, currId) =>
-    <a key={currId} href={link} target="_blank"> { namings[currId] } </a>
-  )
-
-  return [<b key="linkHeading"> Links: </b>].concat(links)
-}
-
-// Renders description with links mapped to specific words.
 const renderDescription = (description, links) => {
   if (!links.length)
     return description
-  console.log(links[0][0])
 
-  let startPoint, endPoint, element
-  let previousEnd = 0
-  let result = []
+  description = [description]
+  let anchorIndex, anchorElement, splittedDescription
 
+  // link[0] - sticky words to point anchor to
+  // link[1] - href for anchor
+  // 1. Find index of string which contains sticky word
+  // 2. Replace it with splitted string and jsx-anchor in between
   for (let link of links) {
-    startPoint = description.search(link[0])
-    endPoint = startPoint + link[0].length
-    result.push(description.slice(previousEnd, startPoint))
-    element = [<a href={link[1]} target="_blank">{link[0]}</a>]
-    result.push(element)
-    previousEnd = endPoint
+    anchorIndex = description.findIndex(strg =>
+      typeof strg === 'string' && strg.includes(link[0])
+    )
+    if (anchorIndex !== -1) {
+      splittedDescription = description[anchorIndex].split(link[0])
+      anchorElement = <a href={link[1]} target="_blank">{link[0]}</a>
+      splittedDescription.splice(1, 0, anchorElement)
+      Array.prototype.splice.apply(description, [anchorIndex, 1].concat(splittedDescription))
+    }
   }
 
-  result.push(description.slice(previousEnd, description.length))
-
-  // 1. Search anchor starting index
-  // 2. If its first anchor -> append everything before anchor point to results + JSX anchor
-  // Else -> append everything after previous anchor endpoint + current JSX anchor
-
-  return result
+  return description
 }
 
 const Sort = ({ isSorted, isSortReverse, onSort, children }) => {
@@ -137,4 +126,4 @@ class Description extends Component {
 Description.PropTypes = { searchResult: PropTypes.array.isRequired }
 Description.defaultProps = { searchResult: [] }
 
-export { Description }
+export { Description, renderDescription }
