@@ -45,7 +45,7 @@ describe('Description component', () => {
       }],
       ["eer", {
         "description": "EER description",
-        "links": [["ERR", "dummy.com"]],
+        "links": [["EER", "dummy.com"]],
       }],
       ["ll", {
         "description": "LL description",
@@ -79,7 +79,7 @@ describe('Render links', () => {
   it('places one link', () => {
     description = 'blah-blah'
     links = [['-blah', 'http://url.org']]
-    let anchor = <a href={links[0][1]} target="_blank">{links[0][0]}</a>
+    const anchor = <a href={links[0][1]} target="_blank">{links[0][0]}</a>
 
     expectedOutput = expect.arrayContaining(['blah', anchor, ''])
     result = expect.arrayContaining(renderDescription(description, links))
@@ -93,8 +93,8 @@ describe('Render links', () => {
       ['-blah', 'http://url.org'],
       ['something', 'http://agony.com']
     ]
-    let anchor_one = <a href={links[0][1]} target="_blank">{links[0][0]}</a>
-    let anchor_two = <a href={links[1][1]} target="_blank">{links[1][0]}</a>
+    const anchor_one = <a href={links[0][1]} target="_blank">{links[0][0]}</a>
+    const anchor_two = <a href={links[1][1]} target="_blank">{links[1][0]}</a>
 
     expectedOutput = expect.arrayContaining(['blah', anchor_one, ' ', anchor_two, ''])
     result = expect.arrayContaining(renderDescription(description, links))
@@ -109,9 +109,9 @@ describe('Render links', () => {
       ['starting', 'http://agony.com'],
       ['string', 'http://random.it']
     ]
-    let anchor_one = <a href={links[0][1]} target="_blank">{links[0][0]}</a>
-    let anchor_two = <a href={links[1][1]} target="_blank">{links[1][0]}</a>
-    let anchor_three = <a href={links[2][1]} target="_blank">{links[2][0]}</a>
+    const anchor_one = <a href={links[0][1]} target="_blank">{links[0][0]}</a>
+    const anchor_two = <a href={links[1][1]} target="_blank">{links[1][0]}</a>
+    const anchor_three = <a href={links[2][1]} target="_blank">{links[2][0]}</a>
 
     expectedOutput = expect.arrayContaining(['', anchor_two, " ", anchor_three, ', ending ', anchor_one, ''])
     result = expect.arrayContaining(renderDescription(description, links))

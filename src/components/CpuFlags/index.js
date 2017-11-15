@@ -72,7 +72,7 @@ export default class CpuFlags extends Component {
   }
 
   render() {
-    const { searchTerm, result, undefinedFlags } = this.state
+    const { result, undefinedFlags } = this.state
 
     return (
       <div className="cpuflags">
@@ -83,7 +83,6 @@ export default class CpuFlags extends Component {
         </p>
 
         <Search
-          value={searchTerm}
           onSubmit={this.onSubmit}
           onChange={this.onSearchChange}
         />
