@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Alert }            from 'react-bootstrap'
+import { CopyToClipboard }  from 'react-copy-to-clipboard'
 
 import { Description }      from '../Description'
 import { Search }           from '../Search'
@@ -12,6 +13,24 @@ import {
 import './index.css'
 
 
+const CopyCommand = ({ isCopied, onCopy }) => {
+  const command = "cat /proc/cpuinfo | grep flags | sed 's/^.*: //'"
+  const colorClass = isCopied ? 'text-success code' : 'code'
+
+  return(
+    <CopyToClipboard
+      text={command}
+      onCopy={onCopy}
+    >
+      <code className={colorClass}>
+        <button className="rounded copyButton">
+          {command}
+        </button>
+      </code>
+    </CopyToClipboard>
+  )
+}
+
 export default class CpuFlags extends Component {
 
   constructor(props) {
@@ -19,11 +38,13 @@ export default class CpuFlags extends Component {
 
     this.state = {
       flagList:       FLAGS,
+      isCopied:       false,
       result:         {},
-      undefinedFlags: [],
-      searchTerm:     DEFAULT_QUERY
+      searchTerm:     DEFAULT_QUERY,
+      undefinedFlags: []
     }
 
+    this.onCopy = this.onCopy.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
     this.onSearchChange = this.onSearchChange.bind(this)
   }
@@ -44,6 +65,10 @@ export default class CpuFlags extends Component {
     return [ searchResult, undefinedFlags ]
   }
 
+  onCopy() {
+    this.setState({ isCopied: true })
+  }
+
   // Change values in search field as user typing
   onSearchChange(event) {
       this.setState({ searchTerm: event.target.value })
@@ -55,8 +80,9 @@ export default class CpuFlags extends Component {
   }
 
   // Submit query, search flags if needed
-  onSubmit(event) {
+  onSubmit(event, inputElement) {
     event.preventDefault()
+    inputElement.select()
     const { searchTerm, flagList } = this.state
     let searchResult = {}
     let undefinedFlags = []
@@ -72,14 +98,16 @@ export default class CpuFlags extends Component {
   }
 
   render() {
-    const { result, undefinedFlags } = this.state
+    const { isCopied, result, undefinedFlags } = this.state
 
     return (
       <div className="cpuflags">
         <h1>CPU Flags</h1>
 
         <p className="usage">
-          Start searching by copying output of <code>cat /proc/cpuinfo | grep flags | sed 's/^.*: //'</code> and pasting it below
+          Start searching by copying output of&nbsp;
+            <CopyCommand isCopied={isCopied} onCopy={this.onCopy} />
+          &nbsp;and pasting it below
         </p>
 
         <Search

@@ -15,3 +15,12 @@
   padding: 5px;
   width: 79%;
 }
+
+.copyButton {
+  padding: 0;
+  color: inherit;
+}
+
+.code {
+  padding: 0;
+}

@@ -11,7 +11,7 @@ import {
 import './index.css'
 
 class Search extends Component {
-  componentDid() {
+  componentDidMount() {
     this.input.focus()
   }
 
@@ -22,7 +22,7 @@ class Search extends Component {
       <Form
         horizontal
         className="search"
-        onSubmit={onSubmit}
+        onSubmit={event => onSubmit(event, this.input)}
       >
         <InputGroup>
           <FormControl
