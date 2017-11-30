@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Alert }            from 'react-bootstrap'
-import { CopyToClipboard }  from 'react-copy-to-clipboard'
+import CopyToClipboard      from 'react-copy-to-clipboard'
+import FontAwesome          from 'react-fontawesome'
+import Tooltip              from 'rc-tooltip'
 
 import { Description }      from '../Description'
 import { Search }           from '../Search'
@@ -11,25 +13,52 @@ import {
 } from '../../constants'
 
 import './index.css'
+import 'rc-tooltip/assets/bootstrap_white.css'
 
 
 const CopyCommand = ({ isCopied, onCopy }) => {
   const command = "cat /proc/cpuinfo | grep flags | sed 's/^.*: //'"
-  const colorClass = isCopied ? 'text-success code' : 'code'
+  const tooltipText = "Copied to clipboard"
 
   return(
-    <CopyToClipboard
-      text={command}
-      onCopy={onCopy}
+    <pre
+      className="command-example"
     >
-      <code className={colorClass}>
-        <button className="rounded copyButton">
-          {command}
-        </button>
+      <code>
+        <strong>$</strong>
+        &nbsp;{command}
       </code>
-    </CopyToClipboard>
+
+      <CopyToClipboard
+        text={command}
+        onCopy={onCopy}
+      >
+        <Tooltip
+          placement="top"
+          trigger={['click']}
+          overlay={<span>{tooltipText}</span>}
+        >
+          <FontAwesome
+            name="clipboard"
+            className="clipboard-icon"
+          />
+        </Tooltip>
+      </CopyToClipboard>
+    </pre>
   )
 }
+
+const UsageHeader = ({ isCopied, onCopy }) =>
+  <div>
+    <h1>CPU Flags</h1>
+
+    <p className="usage-description">
+      Start searching by copying output of&nbsp;
+      command below and pasting it in search field:
+    </p>
+
+    <CopyCommand isCopied={isCopied} onCopy={onCopy} />
+  </div>
 
 export default class CpuFlags extends Component {
 
@@ -45,12 +74,12 @@ export default class CpuFlags extends Component {
     }
 
     this.onCopy = this.onCopy.bind(this)
-    this.onSubmit = this.onSubmit.bind(this)
     this.onSearchChange = this.onSearchChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
   searchFlags(searchTerm, flagList) {
-    let splittedFlags = searchTerm.split(' ')
+    const splittedFlags = searchTerm.split(' ')
     let searchResult = {}
     let undefinedFlags = []
 
@@ -62,7 +91,7 @@ export default class CpuFlags extends Component {
         undefinedFlags.push(flag)
     }
 
-    return [ searchResult, undefinedFlags ]
+    return [searchResult, undefinedFlags]
   }
 
   onCopy() {
@@ -75,7 +104,7 @@ export default class CpuFlags extends Component {
   }
 
   // Do not search when got blank input
-  needsToSearchFlags(searchTerm) {
+  isValid(searchTerm) {
     return searchTerm.replace(/\s/g, '') === ''
   }
 
@@ -87,9 +116,8 @@ export default class CpuFlags extends Component {
     let searchResult = {}
     let undefinedFlags = []
 
-    if (!this.needsToSearchFlags(searchTerm))
-      [ searchResult, undefinedFlags ] = this.searchFlags(searchTerm, flagList)
-
+    if (!this.isValid(searchTerm))
+      [searchResult, undefinedFlags] = this.searchFlags(searchTerm, flagList)
 
     this.setState({
       result: searchResult,
@@ -102,13 +130,10 @@ export default class CpuFlags extends Component {
 
     return (
       <div className="cpuflags">
-        <h1>CPU Flags</h1>
-
-        <p className="usage">
-          Start searching by copying output of&nbsp;
-            <CopyCommand isCopied={isCopied} onCopy={this.onCopy} />
-          &nbsp;and pasting it below
-        </p>
+        <UsageHeader
+          isCopied={isCopied}
+          onCopy={this.onCopy}
+        />
 
         <Search
           onSubmit={this.onSubmit}

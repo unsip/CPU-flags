@@ -80,7 +80,7 @@ class Description extends Component {
       resultToRender = searchResult
 
     return (
-      <div className="Description">
+      <div className="description">
         { searchResult.length
           ? <Table
               striped

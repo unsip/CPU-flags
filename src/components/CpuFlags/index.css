@@ -16,11 +16,15 @@
   width: 79%;
 }
 
-.copyButton {
-  padding: 0;
-  color: inherit;
+.command-example {
+  position: relative;
+  margin: auto;
+  width: 50%;
+  font-size: medium;
 }
 
-.code {
-  padding: 0;
+.clipboard-icon {
+  position: absolute;
+  padding: 5px;
+  right: 10px;
 }

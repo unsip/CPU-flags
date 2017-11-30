@@ -5,10 +5,11 @@
   "homepage": "https://unsip.github.io/CPU-flags",
   "dependencies": {
     "prop-types": "^15.6.0",
-    "react": "^15.6.2",
+    "rc-tooltip": "^3.7.0",
+    "react": "^16.1.1",
     "react-bootstrap": "^0.31.5",
     "react-copy-to-clipboard": "^5.0.1",
-    "react-dom": "^15.6.2",
+    "react-dom": "^16.1.1",
     "react-fontawesome": "^1.6.1",
     "react-scripts": "1.0.12"
   },
@@ -20,10 +21,9 @@
     "deploy": "npm run build && gh-pages -d build"
   },
   "devDependencies": {
-    "enzyme": "^3.1.0",
-    "enzyme-adapter-react-16": "^1.0.2",
-    "gh-pages": "^1.0.0",
-    "react-addons-test-utils": "^15.6.2",
-    "react-test-renderer": "^16.0.0"
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "gh-pages": "^1.1.0",
+    "react-test-renderer": "^16.1.1"
   }
 }
