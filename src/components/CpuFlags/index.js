@@ -53,7 +53,7 @@ const UsageHeader = ({ isCopied, onCopy }) =>
     <h1>CPU Flags</h1>
 
     <p className="usage-description">
-      Start searching by copying output of&nbsp;
+      Start searching by copying output of
       command below and pasting it in search field:
     </p>
 
