@@ -80,6 +80,7 @@ export default class CpuFlags extends Component {
 
   searchFlags(searchTerm, flagList) {
     const splittedFlags = searchTerm.split(' ')
+      .filter(entry => entry)
     let searchResult = {}
     let undefinedFlags = []
 
